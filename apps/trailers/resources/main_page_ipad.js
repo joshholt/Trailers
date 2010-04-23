@@ -50,7 +50,7 @@ Trailers.mainPageIpad = SC.Page.design({
         contentView: SC.View.design({
           //layout: { top: 0, right: 0, bottom: 0, left: 230 },
           childViews: 'detailWrapper trailerWrapper'.w(),
-          backgroundColor: '#000',
+          //backgroundColor: '#000',
           detailWrapper: SC.WellView.design({
             layout: { top: 10, left: 10, height: 275, right: 10},
             isVisibleBinding: 'Trailers.trailerController.hasContent',
