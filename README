@@ -3,5 +3,26 @@ Project:   Trailers
 Copyright: ©2010 My Company, Inc.
 =============================================================================
 
-TODO: Describe Your Project
+Trailers is an application that will pull trailers from some service 
+(currently the trailers come from Apple's "current.xml").
 
+********************************************************************************
+Currently Implemented Features
+********************************************************************************
+-- Pull Trailers from a feed
+-- Load Trailers into the store after adding a guid and parsing the XML
+-- Display Trailers in a Listview using new MasterDetailView 
+-- Show details of selected Trailer 
+   -- ( Poster, Rating, ReleaseDate, Description, and Trailer )
+-- Use SC.VideoView to allow the trailer to be played on Desktop and iPad.
+
+********************************************************************************
+TODO:
+********************************************************************************
+-- Change MasterDetailView to A GridView
+-- When selecting/tapping a grid item ( a trailer poster )
+   -- Make Details appear like hedwig
+   -- When clicking/tapping on the location button 
+      -- flip detail card over to display a map where this movie may be playing
+-- Fix SC.VideoView so that valueBinding (i.e. switching out the video URL ) works
+   in other browsers ( currently swapping out the src URL only works in WebKit nightly )
