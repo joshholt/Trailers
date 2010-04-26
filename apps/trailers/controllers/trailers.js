@@ -1,17 +1,14 @@
 // ==========================================================================
 // Project:   Trailers.trailersController
-// Copyright: ©2010 My Company, Inc.
+// Copyright: ©2010 Metal Rooster Design.
 // ==========================================================================
 /*globals Trailers */
 
 /** @class
 
-  (Document Your Controller Here)
+  This controller holds the main trailers collection.
+  It is driven by a SC.Query.
 
   @extends SC.ArrayController
 */
-Trailers.trailersController = SC.ArrayController.create(
-/** @scope Trailers.trailersController.prototype */ {
-
-
-});
+Trailers.trailersController = SC.ArrayController.create({});

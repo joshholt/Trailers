@@ -1,15 +1,11 @@
 // ==========================================================================
 // Project:   Trailers - mainPage
-// Copyright: ©2010 My Company, Inc.
+// Copyright: ©2010 Metal Rooster Design.
 // ==========================================================================
 /*globals Trailers */
 
-// This page describes the main user interface for your application.  
 Trailers.mainPageIpad = SC.Page.design({
 
-  // The main pane is made visible on screen as soon as your app is loaded.
-  // Add childViews to this pane for views to display immediately on page 
-  // load.
   mainPane: SC.MainPane.design({
     childViews: 'masterDetail'.w(),
     
@@ -22,9 +18,7 @@ Trailers.mainPageIpad = SC.Page.design({
           backgroundColor: '#dedede',
 
           trailerList: SC.ScrollView.design({
-            //layout: { top: 0, right: 0, bottom: 0, left: 0 },
             contentView: SC.ListView.design({
-              //layout: { top: 0, right: 0, bottom: 0, left: 0 },
               contentBinding: 'Trailers.trailersController',
               selectionBinding: 'Trailers.trailersController.selection',
               contentValueKey: 'title',
@@ -48,9 +42,7 @@ Trailers.mainPageIpad = SC.Page.design({
         }),
         
         contentView: SC.View.design({
-          //layout: { top: 0, right: 0, bottom: 0, left: 230 },
           childViews: 'detailWrapper trailerWrapper'.w(),
-          //backgroundColor: '#000',
           detailWrapper: SC.WellView.design({
             layout: { top: 10, left: 10, height: 275, right: 10},
             isVisibleBinding: 'Trailers.trailerController.hasContent',

@@ -1,6 +1,6 @@
 // ==========================================================================
 // Project:   Trailers.Trailer Unit Test
-// Copyright: ©2010 My Company, Inc.
+// Copyright: ©2010 Metal Rooster Design.
 // ==========================================================================
 /*globals Trailers module test ok equals same stop start */
 

@@ -1,12 +1,17 @@
 // ==========================================================================
 // Project:   Trailers.TrailersDataSource
-// Copyright: ©2010 My Company, Inc.
+// Copyright: ©2010 Metal Rooster Design.
 // ==========================================================================
 /*globals Trailers */
 
 /** @class
 
-  (Document Your Data Source Here)
+  This is the data source for the Trailers application
+  Currently it pulls the Trailers from Apple's "current.xml"
+  or their "just_added.json" feed
+
+  I hope to find an actual service but for now this is the best 
+  that I can come up with
 
   @extends SC.DataSource
 */
@@ -61,23 +66,19 @@ Trailers.TrailersDataSource = SC.DataSource.extend(
       var recs = [];
       if (xmlDoc) {
         var x=xmlDoc.getElementsByTagName("movieinfo");
-  			for (var i=0;i<x.length;i++) {
-  				var currentMovie = {};
-  				currentMovie.guid = x.length - i;
-  				currentMovie.title = x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-  				currentMovie.rating = x[i].getElementsByTagName("rating")[0].childNodes[0].nodeValue;
-  				currentMovie.releasedate = x[i].getElementsByTagName("releasedate")[0].childNodes[0].nodeValue;
-  				currentMovie.directors = x[i].getElementsByTagName("director")[0].childNodes[0].nodeValue;
-  				currentMovie.description = x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
-  				currentMovie.poster = x[i].getElementsByTagName("poster")[0].childNodes[0].childNodes[0].nodeValue;
-  				currentMovie.preview = x[i].getElementsByTagName("preview")[0].childNodes[0].childNodes[0].nodeValue;
-  				recs.push(currentMovie);
-  			}
+	for (var i=0;i<x.length;i++) {
+	var currentMovie = {};
+	    currentMovie.guid = x.length - i;
+	    currentMovie.title = x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+	    currentMovie.rating = x[i].getElementsByTagName("rating")[0].childNodes[0].nodeValue;
+	    currentMovie.releasedate = x[i].getElementsByTagName("releasedate")[0].childNodes[0].nodeValue;
+	    currentMovie.directors = x[i].getElementsByTagName("director")[0].childNodes[0].nodeValue;
+	    currentMovie.description = x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
+	    currentMovie.poster = x[i].getElementsByTagName("poster")[0].childNodes[0].childNodes[0].nodeValue;
+	    currentMovie.preview = x[i].getElementsByTagName("preview")[0].childNodes[0].childNodes[0].nodeValue;
+	    recs.push(currentMovie);
+	}
         
-        // for (var i=0; i < recs.length; i++) {
-        //   recs[i].guid = recs.length - i;
-        //   recs[i].releasedate = recs[i].releasedate.replace(' 00:00:00 +0000','');
-        // }
         store.loadRecords(Trailers.Trailer, recs);
         store.dataSourceDidFetchQuery(query);
       } else {

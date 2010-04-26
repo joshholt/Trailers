@@ -1,12 +1,13 @@
 // ==========================================================================
 // Project:   Trailers.Trailer
-// Copyright: ©2010 My Company, Inc.
+// Copyright: ©2010 Metal Rooster Design.
 // ==========================================================================
 /*globals Trailers */
 
 /** @class
 
-  (Document your Model here)
+  This is model for one trailer. This current model
+  represents XML version of data.
 
   @extends SC.Record
   @version 0.1
