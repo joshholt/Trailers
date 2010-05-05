@@ -17,7 +17,7 @@
 */
 sc_require('models/trailer');
 Trailers.TRAILERS_QUERY_JSON = SC.Query.local(Trailers.Trailer, { orderBy: 'id DESC', url: '/trailers/home/feeds/just_added.json' });
-Trailers.TRAILERS_QUERY_XML = SC.Query.local(Trailers.Trailer, { orderBy: 'id DESC', url: '/trailers/home/xml/current.xml' });
+Trailers.TRAILERS_QUERY_XML = SC.Query.local(Trailers.Trailer, { orderBy: 'id ASC', url: '/trailers/home/xml/current.xml' });
 Trailers.TrailersDataSource = SC.DataSource.extend(
 /** @scope Trailers.TrailersDataSource.prototype */ {
 
@@ -62,23 +62,29 @@ Trailers.TrailersDataSource = SC.DataSource.extend(
   
   didFetchXMLTrailers: function(response, store, query) {
     if (SC.ok(response)) {
-      var xmlDoc = response.get('body');
-      var recs = [];
+      
+      var xmlDoc = response.get('body'), recs = [], guid = 0;
+      var infoElements = ["title","rating","releasedate","director","description"];
+      var rootElements  = ["poster","preview"];
       if (xmlDoc) {
-        var x=xmlDoc.getElementsByTagName("movieinfo");
-	for (var i=0;i<x.length;i++) {
-	var currentMovie = {};
-	    currentMovie.guid = x.length - i;
-	    currentMovie.title = x[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
-	    currentMovie.rating = x[i].getElementsByTagName("rating")[0].childNodes[0].nodeValue;
-	    currentMovie.releasedate = x[i].getElementsByTagName("releasedate")[0].childNodes[0].nodeValue;
-	    currentMovie.directors = x[i].getElementsByTagName("director")[0].childNodes[0].nodeValue;
-	    currentMovie.description = x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
-	    currentMovie.poster = x[i].getElementsByTagName("poster")[0].childNodes[0].childNodes[0].nodeValue;
-	    currentMovie.preview = x[i].getElementsByTagName("preview")[0].childNodes[0].childNodes[0].nodeValue;
-	    recs.push(currentMovie);
-	}
-        
+        SC.$(xmlDoc).find("movieinfo").forEach(function(movie){
+          var currentMovie = {};
+          var movieinfo = SC.$(movie), info = movieinfo.children('info');
+          currentMovie.guid = guid++;
+          
+          infoElements.forEach(function(el){
+            currentMovie[el] = info.children(el) ? info.children(el).text() : "";
+          });
+          rootElements.forEach(function(el){
+            if(el === 'poster') {
+              currentMovie[el] = movieinfo.children(el).children('location').text();
+            } else if(el === 'preview') {
+              currentMovie[el] = movieinfo.children(el).children('large').text();
+            }
+          });
+          
+          recs.push(currentMovie);
+        });
         store.loadRecords(Trailers.Trailer, recs);
         store.dataSourceDidFetchQuery(query);
       } else {

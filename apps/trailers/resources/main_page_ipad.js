@@ -85,17 +85,8 @@ Trailers.mainPageIpad = SC.Page.design({
           trailerWrapper: SC.View.design({
             layout: {top: 293, right: 10, left: 10, bottom: 10},
             childViews: 'trailerView'.w(),
-
-            trailerView: SC.VideoView.design({
-              valueBinding: 'Trailers.trailerController.preview',
-              isVisibleBinding: 'Trailers.trailerController.hasContent',
-              mediaControl: 'none',
-              
-              didAppendToDocument: function() {
-                sc_super();
-                var vo = this.$('video');                
-                vo.attr('controls', 'controls');
-              }
+            trailerView: SC.ContainerView.design({
+              contentViewBinding: 'Trailers.trailerController.trailerViewContent'
             })
           })
         })
