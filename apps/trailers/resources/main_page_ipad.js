@@ -85,8 +85,9 @@ Trailers.mainPageIpad = SC.Page.design({
           trailerWrapper: SC.View.design({
             layout: {top: 293, right: 10, left: 10, bottom: 10},
             childViews: 'trailerView'.w(),
+            isVisibleBinding: 'Trailers.trailerController.hasContent',
             trailerView: SC.ContainerView.design({
-              contentViewBinding: 'Trailers.trailerController.trailerViewContent'
+              nowShowingBinding: 'Trailers.trailerController.trailerViewContent'
             })
           })
         })
