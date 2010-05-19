@@ -13,13 +13,22 @@
   
   @extends SC.Object
 */
-Trailers = SC.Application.create(
+Trailers = SC.Application.create( SC.Statechart,
   /** @scope Trailers.prototype */ {
 
   NAMESPACE: 'Trailers',
   VERSION: '0.1.0',
 
   store: null,
+  
+  // ..........................................................
+  // STATECHART CONFIG
+  // 
+  startOnInit: NO,
+  
+  startStates: {'default': 'loading', 'modals': 'ready'},
+  
+  log: YES,
   
   initializeStore: function(dataSource) {
     this.set('store', SC.Store.create().from(dataSource));
