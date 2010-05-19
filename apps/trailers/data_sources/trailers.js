@@ -23,7 +23,7 @@ Trailers.TRAILERS_QUERY_JSON = SC.Query.local(Trailers.Trailer, {
 });
 Trailers.TRAILERS_QUERY_XML = SC.Query.local(Trailers.Trailer, {
   orderBy: 'id ASC',
-  url: '/trailers/home/xml/current.xml'
+  url: 'http://trailers.apple.com/trailers/home/xml/current.xml'
 });
 
 Trailers.TrailersDataSource = SC.DataSource.extend(
