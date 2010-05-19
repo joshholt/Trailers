@@ -11,4 +11,17 @@
 
   @extends SC.ArrayController
 */
-Trailers.trailersController = SC.ArrayController.create({});
+Trailers.trailersController = SC.ArrayController.create({
+  
+  allowsEmptySelection: NO,
+  allowsMultipleSelection: NO,
+  
+  hasContentObserver: function() {
+    var content = this.get('content');
+    
+    if (content && content.get('length') > 0) {
+      Trailers.sendAction('trailersLoaded', content);
+    }
+  }.observes('*content.[]')
+  
+});
