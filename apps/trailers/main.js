@@ -5,8 +5,8 @@
 /*globals Trailers */
 
 Trailers.main = function main() {
-  //Trailers.getPath('mainPage.mainPane').append();
-  Trailers.getPath('mainPageIpad.mainPane').append();
+  Trailers.getPath('mainPage.mainPane').append();
+  Trailers.startupStatechart();
   Trailers.trailersController.set('content',Trailers.store.find(Trailers.TRAILERS_QUERY_XML));
 };
 
