@@ -22,18 +22,14 @@ Trailers.trailerController = SC.ObjectController.create(
     var preview = this.get('preview');
     if (this.get('hasContent')) {
       trailerView = SC.VideoView.create({
-        //layout: { top: 80, right: 100, height: 400, left: 150 },
         value: preview,
         mediaControl: 'none',
         didCreateLayer: function() {
           sc_super();
           var vo = this.$('video');                
           vo.attr('controls', 'controls');
-        },
-        didAppendToDocument: function() {
-          sc_super();
-          var vo = this.$('video');                
-          vo.attr('controls', 'controls');
+          this.set('layerLocationNeedsUpdate',YES);
+          this.updateLayerIfNeeded();
         }
       });
     }
