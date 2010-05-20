@@ -15,7 +15,7 @@
 Trailers.trailerController = SC.ObjectController.create(
 /** @scope Trailers.trailerController.prototype */ {
   
-  contentBinding: 'Trailers.trailersController.selection'
-  
+  contentBinding: 'Trailers.trailersController.selection',
+  nowShowing: 'front'
 
 });

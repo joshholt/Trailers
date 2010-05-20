@@ -3,14 +3,9 @@
 # Copyright: ©2010 My Company, Inc.
 # ===========================================================================
 
-# Add initial buildfile information here
-config :all, 
-       :required => :sproutcore
-
-config :trailers, 
-       :required => [:sproutcore, :'sproutcore/media', :'sproutcore/statechart'],  
-       :theme    => 'sproutcore/ace'
-
+#config :all, :required => [:sproutcore, :'sproutcore/animation', :'sproutcore/statechart'], :theme => :'sproutcore/ace', :html5_manifest=> true
+config :all, :required => [:sproutcore, :'sproutcore/animation', :'sproutcore/statechart'], :theme => :movies, :html5_manifest=> true
+       
 proxy '/trailers/home/feeds/', :to => 'trailers.apple.com'
 proxy '/trailers/home/xml/',   :to => 'trailers.apple.com'
 

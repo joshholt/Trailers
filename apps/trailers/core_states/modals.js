@@ -32,18 +32,34 @@ Trailers.mixin({
     parallelStatechart: 'modals',
     
     enterState: function() {
-      // 1.) set a state var to be a ref to the modal
-      // 2.) popup up the modal
+      Trailers.trailerController.set('nowShowing','front');
+      if (this._currentVideo) {
+       return; // short circut 
+      }
+      var videoPanel = Trailers.VideoPanel.generateWithView();
+      videoPanel.append();
+      
+      this._currentVideo = videoPanel;
     },
     exitState: function() {
-      // 1.) get the state ref to the poped up modal
-      // 2.) remove the modal
+      if (this._currentVideo) {
+        this._currentVideo.remove();
+        this._currentVideo = null;
+      }
     },
     
     // ..........................................................
     // ACTIONS
     // 
     closeVideo: function() {
+      this.goState('ready');
+    },
+    
+    showDetails: function() {
+      Trailers.trailerController.set('nowShowing','back');
+    },
+    
+    closeDetails: function() {
       this.goState('ready');
     }
     

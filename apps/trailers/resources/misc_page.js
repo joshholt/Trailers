@@ -4,6 +4,8 @@
 // ==========================================================================
 /*globals Trailers */
 
+sc_require('views/simple_video');
+
 Trailers.miscPage = SC.Page.design({
   
   loaderView: SC.ProgressView.design({
@@ -14,6 +16,10 @@ Trailers.miscPage = SC.Page.design({
     layout: { centerX: 0, centerY: 0, width: 300, height: 24 },
     value: 'There was a problem loading the trailers list....',
     fontWeight: SC.BOLD_WEIGHT
+  }),
+  
+  currentVideo: Trailers.SimpleVideoView.design({
+    videoURLBinding: 'Trailers.trailerController.preview'
   })
   
 });

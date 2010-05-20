@@ -21,7 +21,16 @@ Trailers.SimpleVideoView = SC.View.extend(
   
   render: function(context, firstTime) {
     var url = this.get('videoURL');
-    var videoStyle = {'position':'absolute', 'top':'0px', 'width':'640px', 'bottom':'30px'};
+    var videoStyle = {
+      'position':'absolute', 
+      'top':'50%', 
+      'left':'50%', 
+      'margin-left': '-320px', 
+      'margin-top':'-240px', 
+      'width':'640px', 
+      'height':'480px',
+      'background-color': '#000000'
+    };
     context.begin('video').css(videoStyle).attr({'src': url, 'controls':'true'}).end();
     sc_super();
   }
